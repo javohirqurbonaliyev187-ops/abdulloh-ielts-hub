@@ -2,7 +2,7 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Sardor Karimov",
+    name: "Ismatullayev Asilbek",
     role: "Medical Student",
     score: "8.5",
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=sardor",
