@@ -1,23 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Navbar } from "@/components/layout/Navbar";
+import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
-  Headphones,
-  BookOpen,
-  PenTool,
-  Mic,
-  TrendingUp,
-  TrendingDown,
-  Clock,
-  Target,
-  Calendar,
-  Trophy,
-  Flame,
-  ChevronRight,
-  Play,
-  Star,
+  Headphones, BookOpen, PenTool, Mic, TrendingUp, TrendingDown,
+  Clock, Target, Calendar, Trophy, Flame, ChevronRight, Play, Star,
 } from "lucide-react";
 
 // Mock user data
@@ -32,54 +20,10 @@ const userData = {
 };
 
 const skillData = [
-  {
-    id: "listening",
-    name: "Listening",
-    icon: Headphones,
-    score: 7.0,
-    prevScore: 6.5,
-    trend: "up",
-    progress: 70,
-    avgTime: "28 min",
-    testsCompleted: 8,
-    color: "listening",
-  },
-  {
-    id: "reading",
-    name: "Reading",
-    icon: BookOpen,
-    score: 7.5,
-    prevScore: 7.0,
-    trend: "up",
-    progress: 75,
-    avgTime: "55 min",
-    testsCompleted: 6,
-    color: "reading",
-  },
-  {
-    id: "writing",
-    name: "Writing",
-    icon: PenTool,
-    score: 6.5,
-    prevScore: 6.5,
-    trend: "same",
-    progress: 55,
-    avgTime: "42 min",
-    testsCompleted: 5,
-    color: "writing",
-  },
-  {
-    id: "speaking",
-    name: "Speaking",
-    icon: Mic,
-    score: 7.0,
-    prevScore: 7.5,
-    trend: "down",
-    progress: 65,
-    avgTime: "15 min",
-    testsCompleted: 5,
-    color: "speaking",
-  },
+  { id: "listening", name: "Listening", icon: Headphones, score: 7.0, prevScore: 6.5, trend: "up", progress: 70, avgTime: "28 min", testsCompleted: 8, color: "listening" },
+  { id: "reading", name: "Reading", icon: BookOpen, score: 7.5, prevScore: 7.0, trend: "up", progress: 75, avgTime: "55 min", testsCompleted: 6, color: "reading" },
+  { id: "writing", name: "Writing", icon: PenTool, score: 6.5, prevScore: 6.5, trend: "same", progress: 55, avgTime: "42 min", testsCompleted: 5, color: "writing" },
+  { id: "speaking", name: "Speaking", icon: Mic, score: 7.0, prevScore: 7.5, trend: "down", progress: 65, avgTime: "15 min", testsCompleted: 5, color: "speaking" },
 ];
 
 const recentActivity = [
@@ -101,10 +45,9 @@ export default function Dashboard() {
   ).toFixed(1);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-20 pb-12 px-4 md:px-8">
-        <div className="container-main">
+    <AppLayout>
+      <main className="pb-12 px-4 md:px-8">
+        <div className="container-main pt-4">
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-display text-foreground mb-2">
@@ -165,7 +108,6 @@ export default function Dashboard() {
 
           {/* Main Grid */}
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Skills Section */}
             <div className="lg:col-span-2 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-display text-foreground">Your Skills</h2>
@@ -173,14 +115,10 @@ export default function Dashboard() {
                   View All <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
-
               <div className="grid sm:grid-cols-2 gap-4">
                 {skillData.map((skill) => (
-                  <Link
-                    key={skill.id}
-                    to={`/practice/${skill.id}`}
-                    className={`card-elevated p-5 border-l-4 border-${skill.color} hover:shadow-prominent transition-all group`}
-                  >
+                  <Link key={skill.id} to={`/practice/${skill.id}`}
+                    className={`card-elevated p-5 border-l-4 border-${skill.color} hover:shadow-prominent transition-all group`}>
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className={`w-12 h-12 rounded-lg bg-${skill.color}/10 flex items-center justify-center`}>
@@ -188,25 +126,18 @@ export default function Dashboard() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-foreground">{skill.name}</h3>
-                          <p className="text-xs text-muted-foreground">
-                            {skill.testsCompleted} tests completed
-                          </p>
+                          <p className="text-xs text-muted-foreground">{skill.testsCompleted} tests completed</p>
                         </div>
                       </div>
                       <div className="text-right">
                         <div className="flex items-center gap-1">
                           <span className="text-2xl font-bold text-foreground">{skill.score}</span>
-                          {skill.trend === "up" && (
-                            <TrendingUp className="w-4 h-4 text-success" />
-                          )}
-                          {skill.trend === "down" && (
-                            <TrendingDown className="w-4 h-4 text-destructive" />
-                          )}
+                          {skill.trend === "up" && <TrendingUp className="w-4 h-4 text-success" />}
+                          {skill.trend === "down" && <TrendingDown className="w-4 h-4 text-destructive" />}
                         </div>
                         <span className="text-xs text-muted-foreground">Band Score</span>
                       </div>
                     </div>
-
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Progress to Target</span>
@@ -214,11 +145,9 @@ export default function Dashboard() {
                       </div>
                       <Progress value={skill.progress} className="h-2" />
                     </div>
-
                     <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <Clock className="w-3 h-3" />
-                        <span>Avg: {skill.avgTime}</span>
+                        <Clock className="w-3 h-3" /><span>Avg: {skill.avgTime}</span>
                       </div>
                       <Button variant="ghost" size="sm" className="text-xs group-hover:text-accent">
                         Practice <ChevronRight className="w-3 h-3 ml-1" />
@@ -229,34 +158,15 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Right Sidebar */}
             <div className="space-y-6">
-              {/* Target Progress */}
               <div className="card-elevated p-5">
                 <h3 className="font-semibold text-foreground mb-4">Target Progress</h3>
                 <div className="flex items-center justify-center mb-4">
                   <div className="relative w-32 h-32">
                     <svg className="w-full h-full -rotate-90">
-                      <circle
-                        cx="64"
-                        cy="64"
-                        r="56"
-                        stroke="currentColor"
-                        strokeWidth="12"
-                        fill="none"
-                        className="text-muted"
-                      />
-                      <circle
-                        cx="64"
-                        cy="64"
-                        r="56"
-                        stroke="currentColor"
-                        strokeWidth="12"
-                        fill="none"
-                        className="text-accent"
-                        strokeDasharray={`${(parseFloat(overallScore) / userData.targetScore) * 352} 352`}
-                        strokeLinecap="round"
-                      />
+                      <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="12" fill="none" className="text-muted" />
+                      <circle cx="64" cy="64" r="56" stroke="currentColor" strokeWidth="12" fill="none" className="text-accent"
+                        strokeDasharray={`${(parseFloat(overallScore) / userData.targetScore) * 352} 352`} strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <span className="text-3xl font-bold text-foreground">{overallScore}</span>
@@ -269,7 +179,6 @@ export default function Dashboard() {
                 </p>
               </div>
 
-              {/* Upcoming Tasks */}
               <div className="card-elevated p-5">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold text-foreground">Today's Tasks</h3>
@@ -277,17 +186,12 @@ export default function Dashboard() {
                 </div>
                 <div className="space-y-3">
                   {upcomingTasks.map((task, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors cursor-pointer"
-                    >
+                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors cursor-pointer">
                       <div className={`w-8 h-8 rounded-lg bg-${task.skill}/10 flex items-center justify-center`}>
                         <Play className={`w-4 h-4 text-${task.skill}`} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-foreground truncate">
-                          {task.title}
-                        </p>
+                        <p className="text-sm font-medium text-foreground truncate">{task.title}</p>
                         <p className="text-xs text-muted-foreground">+{task.xp} XP</p>
                       </div>
                     </div>
@@ -295,7 +199,6 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Recent Activity */}
               <div className="card-elevated p-5">
                 <h3 className="font-semibold text-foreground mb-4">Recent Activity</h3>
                 <div className="space-y-3">
@@ -314,6 +217,6 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
-    </div>
+    </AppLayout>
   );
 }
