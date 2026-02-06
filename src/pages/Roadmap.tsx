@@ -1,19 +1,8 @@
 import { useState } from "react";
-import { Navbar } from "@/components/layout/Navbar";
+import { AppLayout } from "@/components/layout/AppLayout";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import {
-  CheckCircle,
-  Circle,
-  Lock,
-  Flame,
-  Trophy,
-  Star,
-  Target,
-  Calendar,
-  ChevronRight,
-  Gift,
-} from "lucide-react";
+import { CheckCircle, Lock, Flame, Trophy, Star, Target, Calendar, ChevronRight, Gift } from "lucide-react";
 
 const roadmapWeeks = [
   {
@@ -93,18 +82,14 @@ const achievements = [
 
 export default function Roadmap() {
   const [activeWeek, setActiveWeek] = useState(1);
-  
-  const totalDays = 28;
   const completedDays = 4;
-  const totalXP = roadmapWeeks.flatMap(w => w.days).reduce((acc, d) => acc + d.xp, 0);
+  const totalDays = 28;
   const earnedXP = roadmapWeeks.flatMap(w => w.days).filter(d => d.completed).reduce((acc, d) => acc + d.xp, 0);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-20 pb-12 px-4 md:px-8">
-        <div className="container-main">
-          {/* Header */}
+    <AppLayout>
+      <main className="pb-12 px-4 md:px-8">
+        <div className="container-main pt-4">
           <div className="mb-8">
             <h1 className="text-3xl font-display text-foreground mb-2">
               Your 30-Day <span className="text-gradient">Learning Roadmap</span>
@@ -114,7 +99,6 @@ export default function Roadmap() {
             </p>
           </div>
 
-          {/* Progress Overview */}
           <div className="grid md:grid-cols-4 gap-4 mb-8">
             <div className="card-elevated p-5">
               <div className="flex items-center gap-3 mb-3">
@@ -200,7 +184,7 @@ export default function Roadmap() {
                   </div>
 
                   <div className="space-y-3">
-                    {week.days.map((day, index) => (
+                    {week.days.map((day) => (
                       <div
                         key={day.day}
                         className={`flex items-center gap-4 p-4 rounded-lg transition-all ${
@@ -317,6 +301,6 @@ export default function Roadmap() {
           </div>
         </div>
       </main>
-    </div>
+    </AppLayout>
   );
 }

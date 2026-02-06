@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/Navbar";
+import { AppLayout } from "@/components/layout/AppLayout";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { SkillsSection } from "@/components/landing/SkillsSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
@@ -7,8 +7,7 @@ import { Footer } from "@/components/landing/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <AppLayout>
       <main>
         <HeroSection />
         <SkillsSection />
@@ -16,7 +15,7 @@ const Index = () => {
         <TestimonialsSection />
       </main>
       <Footer />
-    </div>
+    </AppLayout>
   );
 };
 
