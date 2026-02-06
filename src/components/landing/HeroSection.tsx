@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-student.jpg";
 const stats = [
   { icon: Users, value: "1,000+", label: "Students" },
   { icon: Trophy, value: "8.5+", label: "Avg Band Score" },
-  { icon: BookOpen, value: "500+", label: "Practice Tests" },
+  { icon: BookOpen, value: "100+", label: "Practice Tests" },
 ];
 
 export function HeroSection() {
