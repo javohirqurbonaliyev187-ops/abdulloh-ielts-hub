@@ -4,7 +4,7 @@ import { ArrowRight, Play, Star, Users, Trophy, BookOpen } from "lucide-react";
 import heroImage from "@/assets/hero-student.jpg";
 
 const stats = [
-  { icon: Users, value: "10,000+", label: "Students" },
+  { icon: Users, value: "1,000+", label: "Students" },
   { icon: Trophy, value: "8.5+", label: "Avg Band Score" },
   { icon: BookOpen, value: "500+", label: "Practice Tests" },
 ];
